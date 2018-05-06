@@ -8,16 +8,22 @@ class App extends Component {
 
     this.state = {
       pokemons: [],
+      offset: 0,
+      limit: 20,
+      total: 0,
       isLoading: true,
       error: null
     }
 
-    fetch('https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0')
+    const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit={this.state.limit}&offset={this.state.offset}";
+
+    fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         if(data.results) {
           this.setState({ 
             pokemons: data.results,
+            total: data.count,
             isLoading: false
           });
         }
