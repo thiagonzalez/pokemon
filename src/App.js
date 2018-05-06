@@ -5,28 +5,32 @@ import Loading from './components/Loading';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.handleFetchApi = this.handleFetchApi.bind(this);
 
     this.state = {
       pokemons: [],
-      offset: 0,
-      limit: 20,
       total: 0,
+      nextPage: 'https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0',
       isLoading: true,
-      error: null
     }
 
-    const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit={this.state.limit}&offset={this.state.offset}";
+    this.handleFetchApi();
+  }
 
-    fetch(apiUrl)
+  handleFetchApi() {
+    fetch(this.state.nextPage)
       .then(response => response.json())
       .then(data => {
         if(data.results) {
           this.setState({ 
-            pokemons: data.results,
+            pokemons: this.state.pokemons.concat(data.results),
             total: data.count,
-            isLoading: false
+            isLoading: false,
+            nextPage: data.next
           });
         }
+
+        console.log(this.state.nextPage);
       });
   }
 
@@ -35,7 +39,7 @@ class App extends Component {
   }
 
   render() {
-    const { isLoading, pokemons } = this.state;
+    const { isLoading } = this.state;
 
     return (
       <div className="App">
@@ -49,7 +53,7 @@ class App extends Component {
         </header>
 
         <div className="container">
-          {isLoading ? <Loading /> : <PokemonList pokemons={pokemons} />}
+          {isLoading ? <Loading /> : <PokemonList {...this.state} fetchApi={this.handleFetchApi} />}
         </div>
       </div>
     );
