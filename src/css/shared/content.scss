@@ -1,0 +1,32 @@
+.pokemon-list .pokemon-list-item { 
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+
+  @media (min-width: 960px) { width: 20% }
+  @media (max-width: 960px) { width: 50% }
+  
+  a { color: #000 }
+}
+
+.pokemon-image {
+  height: 96px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+  
+  img { display: inline-block }
+}
+
+.pokemon-id { 
+  display: block;
+  height: 22px;
+  line-height: 22px;
+}
+
+.pokemon-name {
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: capitalize;
+}
