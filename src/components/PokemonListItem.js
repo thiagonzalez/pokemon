@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 class PokemonListItem extends Component {
+  handleClick(id) {
+    this.props.openModal(id);
+  }
+
   render() {
     const pokemon = this.props.pokemon;
     const id = pokemon.url.split('/')[6];
@@ -8,13 +12,13 @@ class PokemonListItem extends Component {
 
     return(
       <div className="pokemon-list-item">
-        <a href="" data-id={id}>
+        <button data-id={id} onClick={this.handleClick.bind(this, id)}>
           <div className="pokemon-image">
             <img src={image} alt={pokemon.name} />
           </div>
           <span className="pokemon-id">{`#${id}`}</span>
           <h2 className="pokemon-name">{pokemon.name}</h2>
-        </a>
+        </button>
       </div>
     );
   }

@@ -20,7 +20,7 @@ class PokemonList extends Component {
             loader={<Loading />}
           >
             {pokemons.map((pokemon, index) => (
-              <PokemonListItem key={index} pokemon={pokemon} />
+              <PokemonListItem key={index} pokemon={pokemon} openModal={this.props.openModal} />
             ))}
         </InfiniteScroll>
       </div>
