@@ -4,24 +4,19 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from './Loading';
 
 class PokemonList extends Component {
-  fetchMoreData = (limit, offset) => {
-    // if (this.props.pokemons.length >= this.props.total) {
-    //   this.setState({ hasMore: false });
-    //   return;
-    // }
+  fetchMoreData = () => {
     this.props.fetchApi();
-    console.log('fetch more data!');
   }
 
   render() {
-    const { pokemons, total } = this.props;
+    const { pokemons, hasMore } = this.props;
 
     return(
       <div className="pokemon-list">
         <InfiniteScroll
-            dataLength={total}
-            next={this.fetchMoreData}
-            hasMore={true}
+            dataLength={pokemons.length}
+            next={this.fetchMoreData.bind(this)}
+            hasMore={hasMore}
             loader={<Loading />}
           >
             {pokemons.map((pokemon, index) => (

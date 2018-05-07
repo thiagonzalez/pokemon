@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './components/Header';
 import PokemonList from './components/PokemonList';
 import Loading from './components/Loading';
 
@@ -9,15 +10,21 @@ class App extends Component {
 
     this.state = {
       pokemons: [],
-      total: 0,
+      total: undefined,
       nextPage: 'https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0',
       isLoading: true,
+      hasMore: true
     }
 
     this.handleFetchApi();
   }
 
   handleFetchApi() {
+    if (this.state.pokemons.length >= this.state.total) {
+      this.setState({ hasMore: false });
+      return;
+    }
+
     fetch(this.state.nextPage)
       .then(response => response.json())
       .then(data => {
@@ -29,13 +36,7 @@ class App extends Component {
             nextPage: data.next
           });
         }
-
-        console.log(this.state.nextPage);
       });
-  }
-
-  componentDidMount(){
-    this.nameInput.focus();
   }
 
   render() {
@@ -43,14 +44,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header>
-          <h1>Pokedex</h1>
-          <input 
-            className="text"
-            ref={(input) => { this.nameInput = input }} 
-            placeholder="Search for a pokemon"
-          />
-        </header>
+        <Header />
 
         <div className="container">
           {isLoading ? <Loading /> : <PokemonList {...this.state} fetchApi={this.handleFetchApi} />}

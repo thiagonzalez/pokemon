@@ -51,15 +51,14 @@ header .text {
   width: 300px;
 }
 
-.pokemon-list .pokemon-list-item {
+.pokemon-list .pokemon-list-item { 
+  display: inline-block;
+  margin-bottom: 20px;
   padding: 20px;
-  text-align: center;
+  text-align: center; 
 }
 
-/**/
-.pokemon-list .pokemon-list-item a {
-  color: #000;
-}
+.pokemon-list .pokemon-list-item a { color: #000 }
 
 .pokemon-image {
   height: 96px;
@@ -68,9 +67,7 @@ header .text {
   width: 100%;
 }
 
-.pokemon-image img {
-  display: inline-block;
-}
+.pokemon-image img { display: inline-block }
 
 .pokemon-id { 
   display: block;
@@ -86,8 +83,9 @@ header .text {
 
 
 @media (min-width: 960px) {
-  .pokemon-list .pokemon-list-item {
-    display: inline-block;
-    width: 20%;
-  }
+  .pokemon-list .pokemon-list-item { width: 20% }
+}
+
+@media (max-width: 960px) {
+  .pokemon-list .pokemon-list-item { width: 50% }
 }
