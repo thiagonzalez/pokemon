@@ -16,7 +16,10 @@
   text-align: center;
   width: 100%;
   
-  img { display: inline-block }
+  img { 
+    display: inline-block; 
+    max-height: 96px;
+  }
 }
 
 .pokemon-id { 
