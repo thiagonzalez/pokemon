@@ -14,7 +14,6 @@ A GH-Page is available [here](https://thiagonzalez.github.io/pokemon/).
 To make a deploy just run `npm run deploy` and your changes will go to the `gh-pages` branch.
 
 ## Didn't have time
-- Modal with pokemon details
 - Testing
 - Search tools
 
