@@ -4,6 +4,10 @@ import PokemonList from './components/PokemonList';
 import Loading from './components/Loading';
 import PokemonDetails from './components/PokemonDetails';
 import Modal from 'react-responsive-modal';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-28198042-3');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
   constructor(props) {
