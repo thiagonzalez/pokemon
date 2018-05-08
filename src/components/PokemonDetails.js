@@ -31,17 +31,44 @@ class PokemonDetails extends Component {
 
     return(
       <div className="pokemon-details">
-        <div className="pokemon-image">
-          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} alt={pokemon.name} />
+
+        <div className="center">
+          <div className="pokemon-image">
+            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} alt={pokemon.name} />
+          </div>
+          <span className="pokemon-id">{`#${pokemon.id}`}</span>
+          <h2 className="pokemon-name">{pokemon.name}</h2>
         </div>
-        <span className="pokemon-id">{`#${pokemon.id}`}</span>
-        <h2 className="pokemon-name">{pokemon.name}</h2>
+
+        <div className="item">
+          <h4>Weight</h4>
+          <span>{pokemon.weight / 10} kg</span>
+        </div>
+
+        <div className="item">
+          <h4>Height</h4>
+          <span>{pokemon.height / 10} m</span>
+        </div>
 
         <div className="item">
           <h4>Type</h4>
 
           {pokemon.types.map((type) => (
-            <div key={type.type.name}>{type.type.name}</div>
+            <span key={type.type.name} className={`capitalize label label-${type.type.name}`}>{type.type.name}</span>
+          ))}
+        </div>
+
+        <div className="item">
+          <h4>Abilities</h4>
+
+          {pokemon.abilities.map((ability) => (
+            <span key={ability.ability.name} className="capitalize comma">
+              {ability.ability.name}
+              
+              {ability.is_hidden &&
+                <strong>(hidden ability)</strong>
+              }
+            </span>
           ))}
         </div>
       </div>
